@@ -3,8 +3,12 @@
 
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="/resources/icons/favicon.ico" type="image/ico">
     <meta charset="utf-8" />
     <title>RaceApi - Home</title>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
 </head>
 
 <body>
@@ -17,6 +21,8 @@
                   document.getElementById("myForm").style.display = "none";
                 }
                 </script>
+                <div id ='header'>
+                  <img id='titleLogo' src="/resources/img/logo.png">
                 <div>
                 <button class="open-button" onclick="openForm()"><b>LOGIN</b></button>
                 <div class="form-popup" id="myForm">
@@ -26,26 +32,27 @@
                           <input type="text" placeholder="Username" name="username" required>
                       
                           <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Enter Password" name="password" required>
+                          <input type="password" placeholder="Password" name="password" required>
                       
                           <button type="submit" class="btn">Login</button>
                           <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
                         </form>
                       </div>
                     </div>
+                  </div>
     <div id="main">
         <div id='navBar'>
             <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/api/events">Events</a></li>
-                <li><a href="/api/tracks">Tracks</a></li>
-                <li><a href="/api/drivers">Drivers</a></li>
-                <li><a href="/api/cars">Cars</a></li>
+                <li><a href="/home"><i class="fa fa-home"></i>  Home</a></li>
+                <li><a href="/api/events"><i class='fa fa-flag-checkered'></i>Events</a></li>
+                <li><a href="/api/tracks"><i class='fas fa-route'></i>Tracks</a></li>
+                <li><a href="/api/drivers"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
+                <li><a href="/api/cars"><i class='fas fa-car'></i>Cars</a></li>
             </ul>
         </div>
         <h1>RaceAPI</h1>
-        <h2><u>The ultimate trackday statistics platform</u></h2>
+        <h2><u>The ultimate trackday statistics platform!</u></h2>
         <h3>Content and features coming soon!</h3>
     </div>
-    <div id="footer">&copy; team 7, 2019</div>
+    <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>
