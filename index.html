@@ -8,6 +8,31 @@
 </head>
 
 <body>
+        <script>
+                function openForm() {
+                  document.getElementById("myForm").style.display = "block";
+                }
+                
+                function closeForm() {
+                  document.getElementById("myForm").style.display = "none";
+                }
+                </script>
+                <div>
+                <button class="open-button" onclick="openForm()"><b>LOGIN</b></button>
+                <div class="form-popup" id="myForm">
+                        <form action="/api/login" class="form-container">
+                      
+                          <label for="username"><b>Username</b></label>
+                          <input type="text" placeholder="Username" name="username" required>
+                      
+                          <label for="password"><b>Password</b></label>
+                          <input type="password" placeholder="Enter Password" name="password" required>
+                      
+                          <button type="submit" class="btn">Login</button>
+                          <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+                        </form>
+                      </div>
+                    </div>
     <div id="main">
         <div id='navBar'>
             <ul>
@@ -22,6 +47,5 @@
         <h2><u>The ultimate trackday statistics platform</u></h2>
         <h3>Content and features coming soon!</h3>
     </div>
-
     <div id="footer">&copy; team 7, 2019</div>
 </body>

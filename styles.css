@@ -5,8 +5,7 @@ body, html{
 
 body {
     background:linear-gradient(135deg, rgba(47, 47, 47, 0.08) 0%, rgba(47, 47, 47, 0.08) 90%,rgba(75, 75, 75, 0.08) 90%, rgba(75, 75, 75, 0.08) 100%),linear-gradient(45deg, rgba(172, 172, 172, 0.1) 0%, rgba(172, 172, 172, 0.1) 65%,rgba(18, 18, 18, 0.1) 65%, rgba(18, 18, 18, 0.1) 100%),linear-gradient(90deg, rgba(157, 157, 157, 0.04) 0%, rgba(157, 157, 157, 0.04) 83%,rgba(198, 198, 198, 0.04) 83%, rgba(198, 198, 198, 0.04) 100%),linear-gradient(0deg, rgba(189, 189, 189, 0.07) 0%, rgba(189, 189, 189, 0.07) 22%,rgba(127, 127, 127, 0.07) 22%, rgba(127, 127, 127, 0.07) 100%),linear-gradient(0deg, rgba(79, 79, 79, 0.03) 0%, rgba(79, 79, 79, 0.03) 34%,rgba(96, 96, 96, 0.03) 34%, rgba(96, 96, 96, 0.03) 100%),linear-gradient(135deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 68%,rgba(192, 192, 192, 0.05) 68%, rgba(192, 192, 192, 0.05) 100%),linear-gradient(0deg, rgba(62, 62, 62, 0.08) 0%, rgba(62, 62, 62, 0.08) 99%,rgba(114, 114, 114, 0.08) 99%, rgba(114, 114, 114, 0.08) 100%),linear-gradient(0deg, rgba(227, 227, 227, 0.07) 0%, rgba(227, 227, 227, 0.07) 83%,rgba(129, 129, 129, 0.07) 83%, rgba(129, 129, 129, 0.07) 100%),linear-gradient(45deg, rgba(27, 27, 27, 0.1) 0%, rgba(27, 27, 27, 0.1) 27%,rgba(58, 58, 58, 0.1) 27%, rgba(58, 58, 58, 0.1) 100%),linear-gradient(90deg, rgb(107, 107, 107),rgb(2, 2, 2));
-    min-height: 100%;
-}
+} * {box-sizing: border-box;}
 
 #main {
     text-align: center;
@@ -72,3 +71,63 @@ li {
     padding: 0;
     background-color: #f1f1f1;
   }
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  display: block;
+  cursor: pointer;
+  opacity: 1;
+  width: 15em;
+  float: right;
+}
+
+.form-popup {
+    display: none;
+  z-index: 60;
+  bottom:0;
+  color: white;
+  float: right;
+}
+
+.form-container {
+  max-width: 200px;
+  padding: 10px;
+  z-index:0;
+  background-color: rgb(61, 56, 56);
+  float: right;
+  position: absolute;
+}
+
+.form-container input[type=text], .form-container input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 15px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+.form-container .cancel {
+  background-color: red;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
