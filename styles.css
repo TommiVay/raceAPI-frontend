@@ -7,7 +7,7 @@ body, html{
 }
 
 #header {
-  max-width: 50%;
+  max-width: 60%;
   margin: auto;
   padding-bottom: 0.5em;
   display: block
@@ -26,7 +26,7 @@ body {
     text-align: center;
     background-color: white;
     border-radius: 1.5em;
-    max-width: 50%;
+    max-width: 60%;
     padding-left: 2em;
     padding-right: 2em;
     padding-bottom: 1em;
@@ -60,31 +60,37 @@ h3{
     padding-left: 5em;
 }
 
-li {
-    float: left;
-    width: 20%;
-  }
+
 
 li i {
   float: left;
 }
 
+li {
+    float: left;
+    width: 20%;
+    background-color: black;
+    color: red;
+  }
+
+
   li a {
     display: block;
     padding: 8px;
-    background-color: #dddddd;
     font-weight: bold;
     text-decoration: none;
+    color: red;
   }
+
+  
+ .activeTab {
+  background-color: red;
+  color:white;
+}
 
   li a:hover {
     background-color: red;
     color: white;
-  }
-
-  a:link {
-      color: red;
-      background-color: #181717;
   }
 
   ul {
@@ -159,3 +165,45 @@ li i {
 .form-container .btn:hover, .open-button:hover {
   opacity: 1;
 }
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
