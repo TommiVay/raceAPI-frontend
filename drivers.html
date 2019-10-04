@@ -8,11 +8,12 @@
     <meta charset="utf-8" />
     <title>RaceApi - Drivers</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
+    <script src="js/drivers.js"></script>
 
 
 </head>
 
-<body>
+<body onload="onLoad()">
         <script>
                 function openForm() {
                   document.getElementById("myForm").style.display = "block";
@@ -52,8 +53,10 @@
             </ul>
         </div>
         <h1>RaceAPI</h1>
-        <h2><u>The ultimate trackday statistics platform!</u></h2>
-        <h3>Content and features coming soon!</h3>
+        <h2>Create a new driver profile</h2>
+        <div id='driverFormDiv'></div>
+        <h2>List of registered drivers</h2>
+        <div id='driversDiv'></div>
     </div>
     <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>
