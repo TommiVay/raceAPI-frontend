@@ -1,6 +1,6 @@
-function onLoad () {
+function onLoad() {
     var xmlhttp = new XMLHttpRequest();
-    var url = 'localhost:3003/sessions'
+    var url = 'http://localhost:3003/api/sessions'
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var sessions = JSON.parse(xmlhttp.responseText);
@@ -9,7 +9,7 @@ function onLoad () {
             for (i = 0; i < sessions.length; i++) {
                 out += parseSession(sessions[i])
             }
-            document.getElementById("sessionList").innerHTML = out;
+            document.getElementById("sessionDiv").innerHTML = out;
         }
     }
     xmlhttp.open("GET", url, true);
@@ -17,20 +17,27 @@ function onLoad () {
 }
 
 function parseSession(session) {
+    console.log(session)
+    let cars = []
+    let track = {}
+    let drivers = []
     let outputHTMLStructure = ''
-    let name = session.name
-    let cars = session.vehicle.map(c => c.name)
-    let track = session.track.name
-    let drivers = session.drivers.map(d => d.name)
+    console.log(session.vehicles)
+    track = session.track
+    console.log(session.drivers)
+    outputHTMLStructure = '</div>' + '<div class="dropdown">' + '<a href=/api/sessions/' + session.name + ' class=dropbtn>' +
+        session.name + '</a>' + '<div class="dropdown-content">' + '<h3>' + 'Track:' + '</h3>' + '<a href=/api/tracks/' + track.name + '>' + track.name + '</a>' + '</p>' + '<h3>' + 'Drivers:' + '</h3>';
 
-    outputHTMLStructure = '<div class="dropdown">' +
-    + '<a href=/api/sessions/' + name + ' class="dropbtn">' + name + '</a>' +
-    '<div class="dropdown-content">' + '<p>' + track + '</p>'
-      drivers.forEach(d => {
-          outputHTMLStructure.concat('<a href="/api/drivers/'+ d.name +'>' + d.name + '</a>')
-      })
-      cars.forEach(c => {
-          outputHTMLStructure.concat('<a href="/api/cars/'+ c.name +'>' + c.name + '</a>')
-      })
-      outputHTMLStructure.concat('</div>' + '</div>')
+    session.drivers.forEach(d => {
+        outputHTMLStructure += ' <a href=/api/drivers/' + d.name + '>' + d.name + '</a>'
+    })
+
+    outputHTMLStructure += '<h3>Cars: </h3>'
+
+    session.vehicles.forEach(c => {
+        outputHTMLStructure += '<a href=/api/cars/' + c.name + '>' + c.name + '</a>'
+    })
+
+    outputHTMLStructure += '</div>' + '</div>'
+    return outputHTMLStructure
 }
