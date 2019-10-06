@@ -21,6 +21,15 @@
                 function closeForm() {
                   document.getElementById("myForm").style.display = "none";
                 }
+
+                function openAddForm() {
+                    document.getElementById("myAddForm").style.display = "block";
+                }
+
+                function closeAddForm() {
+                    document.getElementById("myAddForm").style.display = "none";
+                }
+
                 </script>
                 <div id ='header'>
                   <img id='titleLogo' src="/resources/img/logo.png">
@@ -39,6 +48,28 @@
                           <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
                         </form>
                       </div>
+                    </div>
+                    <div>
+                        <button class="open-button" onclick="openAddForm()"><b>ADD TRACK</b></button>
+                        <div class="form-popup" id="myAddForm">
+                            <form action="/api/login" class="form-container">
+
+                                <label for="name"><b>Track name</b></label>
+                                <input type="text" placeholder="Track name" name="name" required>
+
+                                <label for="map"><b>Map</b></label>
+                                <input type="text" placeholder="Map" name="map">
+
+                                <label for="address"><b>Address</b></label>
+                                <input type="text" placeholder="Address" name="address" required>
+
+                                <label for="session"><b>Events</b></label>
+                                <input type="text" placeholder="Events" name="sessions">
+
+                                <button type="submit" class="btn">Add</button>
+                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
+                            </form>
+                        </div>
                     </div>
                   </div>
     <div id="main">

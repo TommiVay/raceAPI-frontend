@@ -26,9 +26,12 @@
                     if(window.location.href.indexOf("username") > -1){
                         const joku = window.location.href.split("&");
                         console.log(joku)
-                        window.history.replaceState({}, "RaceApi", joku[0])
-
-                        document.getElementById("header").innerHTML = document.getElementById("header").innerHTML+"<p>jotain</p>";
+                        nimi = joku[0].split('=')
+                        const url = nimi[0].split('?')
+                        window.history.replaceState({}, "RaceApi", url[0])
+                        document.getElementById("header").innerHTML = document.getElementById("header").innerHTML+"<p>" + nimi[1] + "</p>";
+                        document.getElementById('loginButton').onclick = function () {location.reload()}
+                        document.getElementById('loginButton').innerText = "LOGOUT"
                     }
                 }
 
@@ -43,10 +46,10 @@
                 }
                 </script>
                 <div id ='header'>
-                  <img id='titleLogo' src="/resources/img/logo.png">
+                  <img id='titleLogo' src="resources/img/logo.png">
                 <div>
                 <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
-                <div class="form-popup" id="myForm">
+                    <div class="form-popup" id="myForm">
                         <form class="form-container">
                       
                           <label for="username"><b>Username</b></label>
@@ -64,11 +67,11 @@
     <div id="main">
         <div id='navBar'>
             <ul>
-                <li ><a class='activeTab' href="/index.html"><i class="fa fa-home"></i>  Home</a></li>
-                <li><a href="/events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
-                <li><a href="/api/tracks"><i class='fas fa-route'></i>Tracks</a></li>
-                <li><a href="/api/drivers"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
-                <li><a href="/api/cars"><i class='fas fa-car'></i>Cars</a></li>
+                <li><a class='activeTab' href="index.html"><i class="fa fa-home"></i>  Home</a></li>
+                <li><a href="events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
+                <li><a href="api/tracks"><i class='fas fa-route'></i>Tracks</a></li>
+                <li><a href="api/drivers"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
+                <li><a href="api/cars"><i class='fas fa-car'></i>Cars</a></li>
             </ul>
         </div>
         <h1>RaceAPI</h1>

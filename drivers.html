@@ -21,6 +21,15 @@
                 function closeForm() {
                   document.getElementById("myForm").style.display = "none";
                 }
+
+                function openAddForm() {
+                    document.getElementById("myAddForm").style.display = "block";
+                }
+
+                function closeAddForm() {
+                    document.getElementById("myAddForm").style.display = "none";
+                }
+
                 </script>
                 <div id ='header'>
                   <img id='titleLogo' src="/resources/img/logo.png">
@@ -39,6 +48,34 @@
                           <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
                         </form>
                       </div>
+                    </div>
+                    <div>
+                        <button class="open-button" onclick="openAddForm()"><b>ADD DRIVER</b></button>
+                        <div class="form-popup" id="myAddForm">
+                            <form action="/api/login" class="form-container">
+
+                                <label for="name"><b>Drivers name</b></label>
+                                <input type="text" placeholder="Drivers name" name="name" required>
+
+                                <label for="nationality"><b>Nationality</b></label>
+                                <input type="text" placeholder="Nationality" name="nationality">
+
+                                <label for="vehicle"><b>Vehicle</b></label>
+                                <input type="text" placeholder="Vehicle" name="vehicle">
+
+                                <label for="organization"><b>Organization</b></label>
+                                <input type="text" placeholder="Organization" name="organization">
+
+                                <label for="username"><b>Username</b></label>
+                                <input type="text" placeholder="Username" name="username" required>
+
+                                <label for="password"><b>Password</b></label>
+                                <input type="password" placeholder="Password" name="password" required>
+
+                                <button type="submit" class="btn">Add</button>
+                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
+                            </form>
+                        </div>
                     </div>
                   </div>
     <div id="main">
