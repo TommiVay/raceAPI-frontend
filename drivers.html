@@ -6,13 +6,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="/resources/icons/favicon.ico" type="image/ico">
     <meta charset="utf-8" />
-    <title>RaceApi - Home</title>
+    <title>RaceApi - Drivers</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
+    <script src="js/drivers.js"></script>
 
 
 </head>
 
-<body>
+<body onload="onLoad()">
         <script>
                 function openForm() {
                   document.getElementById("myForm").style.display = "block";
@@ -89,8 +90,10 @@
             </ul>
         </div>
         <h1>RaceAPI</h1>
-        <h2><u>The ultimate trackday statistics platform!</u></h2>
-        <h3>Content and features coming soon!</h3>
+        <h2>Create a new driver profile</h2>
+        <div id='driverFormDiv'></div>
+        <h2>List of registered drivers</h2>
+        <div id='driversDiv'></div>
     </div>
     <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>
