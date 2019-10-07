@@ -8,11 +8,11 @@
     <meta charset="utf-8" />
     <title>RaceApi - Home</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
-
-
+    <script src='/js/login.js'></script>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
 </head>
 
-<body onload="checkLogin()">
+<body onload="">
         <script>
                 function openForm() {
                   document.getElementById("myForm").style.display = "block";
@@ -22,41 +22,24 @@
                   document.getElementById("myForm").style.display = "none";
                 }
 
-                function checkLogin() {
-                    if(window.location.href.indexOf("username") > -1){
-                        const joku = window.location.href.split("&");
-                        console.log(joku)
-                        window.history.replaceState({}, "RaceApi", joku[0])
+               
 
-                        document.getElementById("header").innerHTML = document.getElementById("header").innerHTML+"<p>jotain</p>";
-                    }
-                }
-
-                function login(form){
-                    if(form.username.value === "asd" && form.password.value === "asd"){
-                        document.getElementById('LoginButton').innerText = "asd";
-                        return true;
-                    }else{
-                        alert("Error password or username")
-                        return false;
-                    }
-                }
                 </script>
                 <div id ='header'>
                   <img id='titleLogo' src="/resources/img/logo.png">
                 <div>
                 <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
                 <div class="form-popup" id="myForm">
-                        <form class="form-container">
+                        <form onsubmit="handleLogin();return false" class="form-container">
                       
                           <label for="username"><b>Username</b></label>
-                          <input type="text" placeholder="Username" name="username" required>
+                          <input id="usernameField" type="text" placeholder="Username" required>
                       
                           <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Password" name="password" required>
+                          <input id="passwordField" type="password" placeholder="Password"  required>
                       
-                          <button type="submit" class="btn" onclick="return login(this.form)">Login</button>
-                          <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+                          <button type="submit" class="btn" >Login</button>
+                          <button  class="btn cancel" onclick="closeForm()">Close</button>
                         </form>
                       </div>
                     </div>
