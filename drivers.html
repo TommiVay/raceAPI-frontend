@@ -9,11 +9,12 @@
     <title>RaceApi - Drivers</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
     <script src="js/drivers.js"></script>
+    <script src='/js/login.js'></script>
 
 
 </head>
 
-<body onload="onLoad()">
+<body onload="onLoad(); checkLogin()">
         <script>
                 function openForm() {
                   document.getElementById("myForm").style.display = "block";
@@ -34,19 +35,18 @@
                 </script>
                 <div id ='header'>
                   <img id='titleLogo' src="/resources/img/logo.png">
-                <div>
-                <button class="open-button" onclick="openForm()"><b>LOGIN</b></button>
-                <div class="form-popup" id="myForm">
-                        <form action="/api/login" class="form-container">
-                      
+                  <div>
+                      <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
+                      <div class="form-popup" id="myForm">
+                        <form onsubmit="handleLogin();return false" class="form-container">
                           <label for="username"><b>Username</b></label>
-                          <input type="text" placeholder="Username" name="username" required>
-                      
+                          <input id="usernameField" type="text" placeholder="Username" required>
+                
                           <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Password" name="password" required>
-                      
+                          <input id="passwordField" type="password" placeholder="Password" required>
+                
                           <button type="submit" class="btn">Login</button>
-                          <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
+                          <button class="btn cancel" onclick="closeForm()">Close</button>
                         </form>
                       </div>
                     </div>

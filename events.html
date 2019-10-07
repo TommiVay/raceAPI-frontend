@@ -9,176 +9,168 @@
     <title>RaceApi - Events</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
     <script src='/js/events.js'></script>
+    <script src='/js/login.js'></script>
 </head>
 
-<body onload="onLoad()">
-        <script>
-                function openForm() {
-                  document.getElementById("myForm").style.display = "block";
-                }
+<body onload="onLoad(); checkLogin()">
+    <script>
+        function openForm() {
+            document.getElementById("myForm").style.display = "block";
+        }
 
 
-                function closeForm() {
-                  document.getElementById("myForm").style.display = "none";
-                }
+        function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+        }
 
-                function openAddForm() {
-                    document.getElementById("myAddForm").style.display = "block"
-                    var xmlhttp = new XMLHttpRequest();
-                    var url = 'localhost:3003/vehicle'
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            var vehicles = JSON.parse(xmlhttp.responseText);
-                            var out = "";
-                            var i;
-                            for (i = 0; i < vehicles.length; i++) {
-                                out += "<option value=" + vehicles[i].name +">"+ vehicles[i].name + "</option>"
-                            }
-                            document.getElementById('selectVehicle').innerHTML += out;
-                        }
+        function openAddForm() {
+            document.getElementById("myAddForm").style.display = "block"
+            var xmlhttp = new XMLHttpRequest();
+            var url = 'localhost:3003/vehicle'
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var vehicles = JSON.parse(xmlhttp.responseText);
+                    var out = "";
+                    var i;
+                    for (i = 0; i < vehicles.length; i++) {
+                        out += "<option value=" + vehicles[i].name + ">" + vehicles[i].name + "</option>"
                     }
-                    var vehicleSelected = document.getElementById("selectVehicle").addEventListener("click", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectVehicle').innerHTML
-                    })
-                    var vehicleSelected = document.getElementById("selectVehicle").addEventListener("change", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectVehicle').innerHTML
-                    })
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    url = 'localhost:3003/driver'
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            var drivers = JSON.parse(xmlhttp.responseText);
-                            var out = "";
-                            var i;
-                            for (i = 0; i < vehicles.length; i++) {
-                                out += "<option value=" + drivers[i].name +">"+ drivers[i].name + "</option>"
-                            }
-                            document.getElementById('selectDriver').innerHTML += out;
-                        }
-                    }
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    var driverSelected = document.getElementById("selectDriver").addEventListener("click", function(){
-                        document.getElementById('myAddForm').innerHTML += <document.getElementById('selectDriver').innerHTML>
-                    })
-                    var driverSelected = document.getElementById("selectDriver").addEventListener("change", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectDriver').innerHTML
-                    })
-                    url = 'localhost:3003/track'
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            var tracks = JSON.parse(xmlhttp.responseText);
-                            var out = "";
-                            var i;
-                            for (i = 0; i < vehicles.length; i++) {
-                                out += "<option value=" + tracks[i].name +">"+ tracks[i].name + "</option>"
-                            }
-                            document.getElementById('selectTrack').innerHTML += out;
-                        }
-                    }
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    var trackSelected = document.getElementById("selectTrack").addEventListener("click", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectTrack').innerHTML
-                    })
-                    var trackSelected = document.getElementById("selectTrack").addEventListener("change", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectTrack').innerHTML
-                    })
-
+                    document.getElementById('selectVehicle').innerHTML += out;
                 }
-
-                function closeAddForm() {
-                    document.getElementById("myAddForm").style.display = "none";
-                }
-
-                function login(form){
-                    if(form.username.value === "asd" && form.password.value === "asd"){
-                        document.getElementById('LoginButton').innerText = "asd";
-                        return true;
-                    }else{
-                        alert("Error password or username")
-                        return false;
+            }
+            var vehicleSelected = document.getElementById("selectVehicle").addEventListener("click", function () {
+                document.getElementById('myAddForm').innerHTML += document.getElementById('selectVehicle').innerHTML
+            })
+            var vehicleSelected = document.getElementById("selectVehicle").addEventListener("change", function () {
+                document.getElementById('myAddForm').innerHTML += document.getElementById('selectVehicle').innerHTML
+            })
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            url = 'localhost:3003/driver'
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var drivers = JSON.parse(xmlhttp.responseText);
+                    var out = "";
+                    var i;
+                    for (i = 0; i < vehicles.length; i++) {
+                        out += "<option value=" + drivers[i].name + ">" + drivers[i].name + "</option>"
                     }
+                    document.getElementById('selectDriver').innerHTML += out;
                 }
-
-                function post(form){
-                    var http = new XMLHttpRequest();
-                    var url = 'localhost:3003/events';
-                    http.open('POST', url, true);
-                    http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-                    http.onreadystatechange = function() {
-                        if(http.readyState == 4 && http.status == 200) {
-                            alert(http.responseText);
-                        }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            var driverSelected = document.getElementById("selectDriver").addEventListener("click", function () {
+                document.getElementById('myAddForm').innerHTML += document.getElementById('selectDriver').innerHTML
+            })
+            var driverSelected = document.getElementById("selectDriver").addEventListener("change", function () {
+                document.getElementById('myAddForm').innerHTML += document.getElementById('selectDriver').innerHTML
+            })
+            url = 'localhost:3003/track'
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var tracks = JSON.parse(xmlhttp.responseText);
+                    var out = "";
+                    var i;
+                    for (i = 0; i < vehicles.length; i++) {
+                        out += "<option value=" + tracks[i].name + ">" + tracks[i].name + "</option>"
                     }
-
-                    http.send(form);
+                    document.getElementById('selectTrack').innerHTML += out;
                 }
+            }
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+            var trackSelected = document.getElementById("selectTrack").addEventListener("click", function () {
+                document.getElementById('myAddForm').innerHTML += document.getElementById('selectTrack').innerHTML
+            })
+            var trackSelected = document.getElementById("selectTrack").addEventListener("change", function () {
+                document.getElementById('myAddForm').innerHTML += document.getElementById('selectTrack').innerHTML
+            })
 
-                </script>
-                <div id ='header'>
-                  <img id='titleLogo' src="/resources/img/logo.png">
-                <div>
-                <button class="open-button" onclick="openForm()"><b>LOGIN</b></button>
-                <div class="form-popup" id="myForm">
-                        <form class="form-container">
-                      
-                          <label for="username"><b>Username</b></label>
-                          <input type="text" placeholder="Username" name="username" required>
-                      
-                          <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Password" name="password" required>
-                      
-                          <button type="submit" class="btn">Login</button>
-                          <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
-                        </form>
-                      </div>
-                    </div>
+        }
 
-                <div>
-                    <button class="open-button" onclick="openAddForm()"><b>ADD EVENT</b></button>
-                    <div class="form-popup" id="myAddForm">
-                        <form action="/api/login" class="form-container">
-
-                            <label for="name"><b>Session name</b></label>
-                            <input type="text" placeholder="Session name" name="name" required>
-
-                            <label for="vehicle"><b>Vehicle</b></label>
-                            <select id="selectVehicle" name="vehicle">
-                                <option value="null"></option>
-                            </select>
-
-                            <label for="driver"><b>Driver</b></label>
-                            <select id="selectDriver" name="driver">
-                                <option value="null"></option>
-                                <option value="null">jotain</option>
-                            </select>
-
-                            <label for="track"><b>Track</b></label>
-                            <select id="selectTrack" name="track">
-                                <option value="null"></option>
-                            </select>
-
-                            <label for="startDate"><b>Start Date</b></label>
-                            <input type="datetime-local" name="startDate">
-
-                            <label for="endDate"><b>End Date</b></label>
-                            <input type="datetime-local" name="endDate">
+        function closeAddForm() {
+            document.getElementById("myAddForm").style.display = "none";
+        }
 
 
-                            <button type="submit" class="btn" onclick="post(this.form())">Add</button>
-                            <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
-                        </form>
-                    </div>
-                </div>
-                </div>
+
+        function post(form) {
+            var http = new XMLHttpRequest();
+            var url = 'localhost:3003/events';
+            http.open('POST', url, true);
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status == 200) {
+                    alert(http.responseText);
+                }
+            }
+
+            http.send(form);
+        }
+
+    </script>
+    <div id='header'>
+        <img id='titleLogo' src="/resources/img/logo.png">
+        <div>
+            <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
+            <div class="form-popup" id="myForm">
+                <form onsubmit="handleLogin();return false" class="form-container">
+                    <label for="username"><b>Username</b></label>
+                    <input id="usernameField" type="text" placeholder="Username" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input id="passwordField" type="password" placeholder="Password" required>
+
+                    <button type="submit" class="btn">Login</button>
+                    <button class="btn cancel" onclick="closeForm()">Close</button>
+                </form>
+            </div>
         </div>
+
+        <div>
+            <button class="open-button" onclick="openAddForm()"><b>ADD EVENT</b></button>
+            <div class="form-popup" id="myAddForm">
+                <form action="/api/login" class="form-container">
+
+                    <label for="name"><b>Session name</b></label>
+                    <input type="text" placeholder="Session name" name="name" required>
+
+                    <label for="vehicle"><b>Vehicle</b></label>
+                    <select id="selectVehicle" name="vehicle">
+                        <option value="null"></option>
+                    </select>
+
+                    <label for="driver"><b>Driver</b></label>
+                    <select id="selectDriver" name="driver">
+                        <option value="null"></option>
+                        <option value="null">jotain</option>
+                    </select>
+
+                    <label for="track"><b>Track</b></label>
+                    <select id="selectTrack" name="track">
+                        <option value="null"></option>
+                    </select>
+
+                    <label for="startDate"><b>Start Date</b></label>
+                    <input type="datetime-local" name="startDate">
+
+                    <label for="endDate"><b>End Date</b></label>
+                    <input type="datetime-local" name="endDate">
+
+
+                    <button type="submit" class="btn" onclick="post(this.form())">Add</button>
+                    <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
     <div id="main">
         <div id='navBar'>
             <ul>
-                <li><a href="/index.html"><i class="fa fa-home"></i>  Home</a></li>
+                <li><a href="/index.html"><i class="fa fa-home"></i> Home</a></li>
                 <li><a class='activeTab' href="/events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
                 <li><a href="/tracks.html"><i class='fas fa-route'></i>Tracks</a></li>
                 <li><a href="/drivers.html"><i class='fas fa-user-astronaut'></i>Drivers</a></li>

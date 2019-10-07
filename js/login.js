@@ -1,11 +1,14 @@
 const url = 'http://localhost:3003/api/login'
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds) {
-            break;
-        }
+const checkLogin = () => {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    const button = document.getElementById("loginButton")
+    if (loggedUserJSON) {
+        button.innerText = 'LOGOUT'
+        button.onclick = function () { handleLogout() }
+    } else {
+        button.innerText = 'LOGIN'
+        button.onclick = function () { openForm() }
     }
 }
 
@@ -21,8 +24,9 @@ const handleLogin = () => {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                 const user = JSON.parse(xmlhttp.responseText)
-                console.log(user)
                 localStorage.setItem("loggedUser", JSON.stringify(user))
+                closeForm()
+                checkLogin()
             }
         }
         xmlhttp.open("POST", url, true)
@@ -33,6 +37,11 @@ const handleLogin = () => {
         console.log(exception)
     }
 
+}
+
+const handleLogout = () => {
+    localStorage.clear()
+    checkLogin()
 }
 
 
