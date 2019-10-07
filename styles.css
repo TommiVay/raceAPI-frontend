@@ -29,16 +29,17 @@ body {
     max-width: 60%;
     padding-left: 2em;
     padding-right: 2em;
-    padding-bottom: 1em;
+    padding-bottom: 10em;
     margin: auto;
     margin-bottom: 1em;
+    
 }
 
 #footer {
     text-align: center;
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
+
     padding: 1em;
     bottom: 0;
 }
@@ -162,22 +163,24 @@ li {
 .dropbtn {
   background-color: red;
   float: left;
+  text-align: left;
   color: white;
-  font-size: 16px;
+  font-size: 1.5wsem;
   width: 100%;
-  border-radius: 15em;
+  padding:0.5em;
 }
 
 /* The container <div> - needed to position the dropdown content */
 .dropdown {
+  text-align: left;
   width: 100%;
   margin-top: 1em;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: block;
-  background-color:gray;
+  display: none;
+  background-color:rgb(94, 94, 94);
   width: 100%;
 }
 
@@ -185,13 +188,16 @@ li {
 .dropdown-content a, p {
   color: white;
   text-decoration: none;
-  display: block;
   text-align: left;
+  margin-left: 1em;
+  margin-top: 0.5em;
 }
 
 .dropdown-content h3 {
   text-align: left;
+  margin-left: 0.5em;
+  margin-top: 0.5em;
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover:only-child  .dropdown-content {display: block;}
+.dropdown:hover  .dropdown-content {display: block;}

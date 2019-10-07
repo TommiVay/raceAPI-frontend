@@ -17,26 +17,25 @@ function onLoad() {
 }
 
 function parseSession(session) {
-    console.log(session)
-    let cars = []
-    let track = {}
-    let drivers = []
     let outputHTMLStructure = ''
-    console.log(session.vehicles)
     track = session.track
-    console.log(session.drivers)
     outputHTMLStructure = '</div>' + '<div class="dropdown">' + '<a href=/api/sessions/' + session.name + ' class=dropbtn>' +
-        session.name + '</a>' + '<div class="dropdown-content">' + '<h3>' + 'Track:' + '</h3>' + '<a href=/api/tracks/' + track.name + '>' + track.name + '</a>' + '</p>' + '<h3>' + 'Drivers:' + '</h3>';
+        session.name + '</a>' + '<div class="dropdown-content">' + '<h3>' + 'Track:' + '</h3>' + '<a href=/api/tracks/' + track.name + '>' + track.name + '</a>' + '</p>'
 
-    session.drivers.forEach(d => {
-        outputHTMLStructure += ' <a href=/api/drivers/' + d.name + '>' + d.name + '</a>'
-    })
+    if (session.drivers.length !== 0) {
+        outputHTMLStructure += '<h3>' + 'Drivers:' + '</h3>'
+        session.drivers.forEach(d => {
+            outputHTMLStructure += ' <a href=/api/drivers/' + d.name + '>' + d.name + '</a><br>'
+        })
+    }
 
-    outputHTMLStructure += '<h3>Cars: </h3>'
 
-    session.vehicles.forEach(c => {
-        outputHTMLStructure += '<a href=/api/cars/' + c.name + '>' + c.name + '</a>'
-    })
+    if (session.vehicles.length !== 0) {
+        outputHTMLStructure += '<h3>Cars: </h3>'
+        session.vehicles.forEach(c => {
+            outputHTMLStructure += '<a href=/api/cars/' + c.name + '>' + c.name + '</a><br>'
+        })
+    }
 
     outputHTMLStructure += '</div>' + '</div>'
     return outputHTMLStructure

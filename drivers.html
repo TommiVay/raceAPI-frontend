@@ -8,11 +8,12 @@
     <meta charset="utf-8" />
     <title>RaceApi - Drivers</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
+    <script src="js/drivers.js"></script>
 
 
 </head>
 
-<body>
+<body onload="onLoad()">
         <script>
                 function openForm() {
                   document.getElementById("myForm").style.display = "block";
@@ -21,6 +22,15 @@
                 function closeForm() {
                   document.getElementById("myForm").style.display = "none";
                 }
+
+                function openAddForm() {
+                    document.getElementById("myAddForm").style.display = "block";
+                }
+
+                function closeAddForm() {
+                    document.getElementById("myAddForm").style.display = "none";
+                }
+
                 </script>
                 <div id ='header'>
                   <img id='titleLogo' src="/resources/img/logo.png">
@@ -40,6 +50,34 @@
                         </form>
                       </div>
                     </div>
+                    <div>
+                        <button class="open-button" onclick="openAddForm()"><b>ADD DRIVER</b></button>
+                        <div class="form-popup" id="myAddForm">
+                            <form action="/api/login" class="form-container">
+
+                                <label for="name"><b>Drivers name</b></label>
+                                <input type="text" placeholder="Drivers name" name="name" required>
+
+                                <label for="nationality"><b>Nationality</b></label>
+                                <input type="text" placeholder="Nationality" name="nationality">
+
+                                <label for="vehicle"><b>Vehicle</b></label>
+                                <input type="text" placeholder="Vehicle" name="vehicle">
+
+                                <label for="organization"><b>Organization</b></label>
+                                <input type="text" placeholder="Organization" name="organization">
+
+                                <label for="username"><b>Username</b></label>
+                                <input type="text" placeholder="Username" name="username" required>
+
+                                <label for="password"><b>Password</b></label>
+                                <input type="password" placeholder="Password" name="password" required>
+
+                                <button type="submit" class="btn">Add</button>
+                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
+                            </form>
+                        </div>
+                    </div>
                   </div>
     <div id="main">
         <div id='navBar'>
@@ -52,8 +90,10 @@
             </ul>
         </div>
         <h1>RaceAPI</h1>
-        <h2><u>The ultimate trackday statistics platform!</u></h2>
-        <h3>Content and features coming soon!</h3>
+        <h2>Create a new driver profile</h2>
+        <div id='driverFormDiv'></div>
+        <h2>List of registered drivers</h2>
+        <div id='driversDiv'></div>
     </div>
     <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>

@@ -8,11 +8,11 @@
     <meta charset="utf-8" />
     <title>RaceApi - Cars</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
-
+    <script src="js/cars.js"></script>
 
 </head>
 
-<body>
+<body onload="onLoad()">
         <script>
                 function openForm() {
                   document.getElementById("myForm").style.display = "block";
@@ -21,6 +21,15 @@
                 function closeForm() {
                   document.getElementById("myForm").style.display = "none";
                 }
+
+                function openAddForm() {
+                    document.getElementById("myAddForm").style.display = "block";
+                }
+
+                function closeAddForm() {
+                    document.getElementById("myAddForm").style.display = "none";
+                }
+
                 </script>
                 <div id ='header'>
                   <img id='titleLogo' src="/resources/img/logo.png">
@@ -40,6 +49,28 @@
                         </form>
                       </div>
                     </div>
+                    <div>
+                        <button class="open-button" onclick="openAddForm()"><b>ADD CAR</b></button>
+                        <div class="form-popup" id="myAddForm">
+                            <form action="/api/login" class="form-container">
+
+                                <label for="name"><b>Drivers name</b></label>
+                                <input type="text" placeholder="Drivers name" name="name" required>
+
+                                <label for="class"><b>Class</b></label>
+                                <input type="text" placeholder="Class" name="class">
+
+                                <label for="name"><b>Vehicle name</b></label>
+                                <input type="text" placeholder="Vehicle name" name="name" required>
+
+                                <label for="description"><b>Description</b></label>
+                                <input type="text" placeholder="Description" name="description">
+
+                                <button type="submit" class="btn">Add</button>
+                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
+                            </form>
+                        </div>
+                    </div>
                   </div>
     <div id="main">
         <div id='navBar'>
@@ -52,8 +83,11 @@
             </ul>
         </div>
         <h1>RaceAPI</h1>
-        <h2><u>The ultimate trackday statistics platform!</u></h2>
-        <h3>Content and features coming soon!</h3>
-    </div>
+        <h2>Register a car</h2>
+        <div id='carsFormDiv'></div>
+        <h2>List of registered cars</h2>
+        <div id='vehiclesDiv'></div>
+          </div>
+
     <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>
