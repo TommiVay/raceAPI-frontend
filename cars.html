@@ -24,6 +24,7 @@
 
                 function openAddForm() {
                     document.getElementById("myAddForm").style.display = "block";
+                    drivers();
                 }
 
                 function closeAddForm() {
@@ -54,8 +55,9 @@
                         <div class="form-popup" id="myAddForm">
                             <form action="/api/login" class="form-container">
 
-                                <label for="name"><b>Drivers name</b></label>
-                                <input type="text" placeholder="Drivers name" name="name" required>
+                                <label for="driver"><b>Driver</b></label>
+                                <select id="selectDriver" name="driver" required>
+                                </select>
 
                                 <label for="class"><b>Class</b></label>
                                 <input type="text" placeholder="Class" name="class">
