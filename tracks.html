@@ -23,14 +23,6 @@
     function closeForm() {
       document.getElementById("myForm").style.display = "none";
     }
-
-    function openAddForm() {
-      document.getElementById("myAddForm").style.display = "block";
-    }
-
-    function closeAddForm() {
-      document.getElementById("myAddForm").style.display = "none";
-    }
   </script>
 
   <div id='header'>
@@ -49,40 +41,35 @@
           <button class="btn cancel" onclick="closeForm()">Close</button>
         </form>
       </div>
-
-      <div>
-        <button class="open-button" onclick="openAddForm()"><b>ADD TRACK</b></button>
-        <div class="form-popup" id="myAddForm">
-          <form action="/api/login" class="form-container">
-
-            <label for="name"><b>Track name</b></label>
-            <input type="text" placeholder="Track name" name="name" required>
-            <label for="address"><b>Address</b></label>
-            <input type="text" placeholder="Address" name="address" required>
-
-                                <button type="button" class="btn" onclick="closeAddForm();addTrack(this.form)">Add</button>
-                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
-                            </form>
-                        </div>
-                    </div>
-                  </div>
-  </div>
-    <div id="main">
-      <div id='navBar'>
-        <ul>
-          <li><a href="/index.html"><i class="fa fa-home"></i> Home</a></li>
-          <li><a href="/events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
-          <li><a class='activeTab' href="/tracks.html"><i class='fas fa-route'></i>Tracks</a></li>
-          <li><a href="/drivers.html"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
-          <li><a href="/cars.html"><i class='fas fa-car'></i>Cars</a></li>
-        </ul>
       </div>
-      <h1>Tracks</h1>
-      <h2>Add a new track</h2>
-      <div id='trackFormDiv'></div>
-      <h2>List of registered tracks</h2>
-
-      <div id='tracksDiv'></div>
     </div>
-    <div id="footer">RaceAPI &copy; team 7, 2019</div>
+  </div>
+  <div id="main">
+    <div id='navBar'>
+      <ul>
+        <li><a href="/index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="/events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
+        <li><a class='activeTab' href="/tracks.html"><i class='fas fa-route'></i>Tracks</a></li>
+        <li><a href="/drivers.html"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
+        <li><a href="/cars.html"><i class='fas fa-car'></i>Cars</a></li>
+      </ul>
+    </div>
+    <h1>Tracks</h1>
+    <h2>Add a new track</h2>
+
+    <div id='trackFormDiv'>
+      <form class="form-input">
+
+        <label for="name"><b>Track name</b></label>
+        <input type="text" placeholder="Track name" name="name" required><br><br>
+        <label for="address"><b>Address</b></label>
+        <input type="text" placeholder="Address" name="address" required><br><br>
+        <button type="button" class="form-submit" onclick="addTrack(this.form)">Add</button>
+      </form>
+    </div>
+    <h2>List of registered tracks</h2>
+
+    <div id='tracksDiv'></div>
+  </div>
+  <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>

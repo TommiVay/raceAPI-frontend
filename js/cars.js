@@ -31,7 +31,6 @@ function parseVehicle(vehicle) {
 }
 
 function drivers() {
-    document.getElementById("myAddForm").style.display = "block"
     var xmlhttp = new XMLHttpRequest();
 
     var url = 'http://localhost:3003/api/drivers'

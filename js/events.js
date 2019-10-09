@@ -102,7 +102,3 @@ function getTracks() {
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
-
-function addEvent() {
-
-}
