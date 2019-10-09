@@ -4,12 +4,12 @@
 <head>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="/resources/icons/favicon.ico" type="image/ico">
+    <link rel="icon" href="resources/icons/favicon.ico" type="image/ico">
     <meta charset="utf-8" />
     <title>RaceApi - Cars</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
     <script src="js/cars.js"></script>
-    <script src='/js/login.js'></script>
+    <script src='js/login.js'></script>
 </head>
 
 <body onload="onLoad(); checkLogin()">
@@ -33,7 +33,7 @@
 
                 </script>
                 <div id ='header'>
-                  <img id='titleLogo' src="/resources/img/logo.png">
+                  <img id='titleLogo' src="resources/img/logo.png">
                   <div>
                       <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
                       <div class="form-popup" id="myForm">
@@ -67,7 +67,7 @@
                                 <label for="description"><b>Description</b></label>
                                 <input type="text" placeholder="Description" name="description">
 
-                                <button type="button" class="btn" onclick="addCar(this.form)">Add</button>
+                                <button type="button" class="btn" onclick="addCar(this.form);closeAddForm()">Add</button>
                                 <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
                             </form>
                         </div>
@@ -76,11 +76,11 @@
     <div id="main">
         <div id='navBar'>
             <ul>
-                <li><a href="/index.html"><i class="fa fa-home"></i>  Home</a></li>
-                <li><a  href="/events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
-                <li><a href="/tracks.html"><i class='fas fa-route'></i>Tracks</a></li>
-                <li><a href="/drivers.html"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
-                <li><a class='activeTab' href="/cars.html"><i class='fas fa-car'></i>Cars</a></li>
+                <li><a href="index.html"><i class="fa fa-home"></i>  Home</a></li>
+                <li><a  href="events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
+                <li><a href="tracks.html"><i class='fas fa-route'></i>Tracks</a></li>
+                <li><a href="drivers.html"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
+                <li><a class='activeTab' href="cars.html"><i class='fas fa-car'></i>Cars</a></li>
             </ul>
         </div>
         <h1>RaceAPI</h1>

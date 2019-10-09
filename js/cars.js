@@ -51,5 +51,27 @@ function drivers() {
 }
 
 function addCars(form) {
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+    var body = { }
+    body.driver = form.driver.value
+    body.class = form.class.value
+    body.name = form.name.value
+    body.description = form.description.value
+    const token = JSON.parse(loggedUserJSON).token
+    var xmlhttp = new XMLHttpRequest();
+    console.log(JSON.stringify(body))
+    var url = 'http://localhost:3003/api/vehicles'
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState === 4 && xmlhttp.status === 201) {
 
+            console.log(xmlhttp.responseText)
+        }else {
+            console.log(xmlhttp.responseText)
+        }
+    }
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
+
+    xmlhttp.send(JSON.stringify(body));
 }

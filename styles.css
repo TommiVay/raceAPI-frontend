@@ -19,7 +19,7 @@ body, html{
 }
 
 body {
-  background: url('resources/img/logodarkredoutline.png') left top repeat, url('/resources/img/cf-background.png'); 
+  background: url('resources/img/logodarkredoutline.png') left top repeat, url('resources/img/cf-background.png');
 } * {box-sizing: border-box;}
 
 #main {
