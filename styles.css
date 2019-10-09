@@ -32,14 +32,12 @@ body {
     padding-bottom: 10em;
     margin: auto;
     margin-bottom: 1em;
-    
 }
 
 #footer {
     text-align: center;
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
-
     padding: 1em;
     bottom: 0;
 }
@@ -165,7 +163,7 @@ li {
   float: left;
   text-align: left;
   color: white;
-  font-size: 1.5wsem;
+  font-size: 1em;
   width: 100%;
   padding:0.5em;
 }
@@ -190,14 +188,48 @@ li {
   text-decoration: none;
   text-align: left;
   margin-left: 1em;
-  margin-top: 0.5em;
 }
 
 .dropdown-content h3 {
   text-align: left;
   margin-left: 0.5em;
-  margin-top: 0.5em;
+  margin-top: -0.5em;
 }
 
 /* Show the dropdown menu on hover */
 .dropdown:hover  .dropdown-content {display: block;}
+
+.form-input {
+  background-color: rgb(94, 94, 94);
+  padding-left: 3em;
+  color: white;
+  padding-top: 2em;
+}
+
+.form-input {
+  background-color: rgb(94, 94, 94);
+  padding-left: 3em;
+  color: white;
+  padding-top: 2em;
+}
+
+.form-input input {
+  display: inline-block;
+  float: right;
+  margin-right: 4em;
+}
+
+.form-input label {
+  display: inline-block;
+  float: left;
+}
+
+.form-submit {
+  background-color: red;
+  color: white;
+  font-family: 'Conthrax';
+  padding: 1em;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 10%;
+}
