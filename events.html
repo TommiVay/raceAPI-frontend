@@ -8,8 +8,8 @@
     <meta charset="utf-8" />
     <title>RaceApi - Events</title>
     <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
-    <script src='/js/events.js'></script>
-    <script src='/js/login.js'></script>
+    <script src='js/events.js'></script>
+    <script src='js/login.js'></script>
 </head>
 
 <body onload="onLoad(); checkLogin()">
@@ -23,71 +23,6 @@
                   document.getElementById("myForm").style.display = "none";
                 }
 
-                function openAddForm() {
-                    document.getElementById("myAddForm").style.display = "block"
-                    var xmlhttp = new XMLHttpRequest();
-                    var url = 'localhost:3003/vehicle'
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            var vehicles = JSON.parse(xmlhttp.responseText);
-                            var out = "";
-                            var i;
-                            for (i = 0; i < vehicles.length; i++) {
-                                out += "<option value=" + vehicles[i].name +">"+ vehicles[i].name + "</option>"
-                            }
-                            document.getElementById('selectVehicle').innerHTML += out;
-                        }
-                    }
-                    var vehicleSelected = document.getElementById("selectVehicle").addEventListener("click", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectVehicle').innerHTML
-                    })
-                    var vehicleSelected = document.getElementById("selectVehicle").addEventListener("change", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectVehicle').innerHTML
-                    })
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    url = 'localhost:3003/driver'
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            var drivers = JSON.parse(xmlhttp.responseText);
-                            var out = "";
-                            var i;
-                            for (i = 0; i < vehicles.length; i++) {
-                                out += "<option value=" + drivers[i].name +">"+ drivers[i].name + "</option>"
-                            }
-                            document.getElementById('selectDriver').innerHTML += out;
-                        }
-                    }
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    var driverSelected = document.getElementById("selectDriver").addEventListener("click", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectDriver').innerHTML
-                    })
-                    var driverSelected = document.getElementById("selectDriver").addEventListener("change", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectDriver').innerHTML
-                    })
-                    url = 'localhost:3003/track'
-                    xmlhttp.onreadystatechange = function () {
-                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                            var tracks = JSON.parse(xmlhttp.responseText);
-                            var out = "";
-                            var i;
-                            for (i = 0; i < vehicles.length; i++) {
-                                out += "<option value=" + tracks[i].name +">"+ tracks[i].name + "</option>"
-                            }
-                            document.getElementById('selectTrack').innerHTML += out;
-                        }
-                    }
-                    xmlhttp.open("GET", url, true);
-                    xmlhttp.send();
-                    var trackSelected = document.getElementById("selectTrack").addEventListener("click", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectTrack').innerHTML
-                    })
-                    var trackSelected = document.getElementById("selectTrack").addEventListener("change", function(){
-                        document.getElementById('myAddForm').innerHTML += document.getElementById('selectTrack').innerHTML
-                    })
-
-                }
 
                 function closeAddForm() {
                     document.getElementById("myAddForm").style.display = "none";
@@ -158,7 +93,7 @@
                             <input type="datetime-local" name="endDate">
 
 
-                            <button type="submit" class="btn" onclick="post(this.form())">Add</button>
+                            <button type="button" class="btn" onclick="closeAddForm();addEvent()">Add</button>
                             <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
                         </form>
                     </div>

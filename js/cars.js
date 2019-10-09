@@ -33,7 +33,7 @@ function drivers() {
     document.getElementById("myAddForm").style.display = "block"
     var xmlhttp = new XMLHttpRequest();
 
-    url = 'http://localhost:3003/api/drivers'
+    var url = 'http://localhost:3003/api/drivers'
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var drivers = JSON.parse(xmlhttp.responseText);
@@ -50,10 +50,54 @@ function drivers() {
     xmlhttp.send();
 }
 
-function addCars(form) {
+function driverId(form){
+    document.getElementById("myAddForm").style.display = "block"
+    var xmlhttp2 = new XMLHttpRequest();
+
+    var url = 'http://localhost:3003/api/drivers'
+    xmlhttp2.onreadystatechange = function () {
+        if (xmlhttp2.readyState === 4 && xmlhttp2.status === 200) {
+            var drivers = JSON.parse(xmlhttp2.responseText);
+            var driverId = ""
+            console.log(drivers[0].name + form.driver.value)
+            drivers.forEach(d => {if(form.driver.value == d.name){
+                console.log(d.id)
+                driverId = d.id;
+            }});
+            const loggedUserJSON = window.localStorage.getItem('loggedUser')
+            var body = { }
+            body.driver = driverId
+            body.class = form.class.value
+            body.name = form.name.value
+            body.description = form.description.value
+            const token = JSON.parse(loggedUserJSON).token
+            var xmlhttp = new XMLHttpRequest();
+            console.log(JSON.stringify(body))
+            var url = 'http://localhost:3003/api/vehicles'
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState === 4 && xmlhttp.status === 201) {
+
+                    console.log(xmlhttp.responseText)
+                }else {
+                    console.log(xmlhttp.responseText)
+                }
+            }
+            xmlhttp.open("POST", url, true);
+            xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+            xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
+
+            xmlhttp.send(JSON.stringify(body));
+        }
+    }
+    xmlhttp2.open("GET", url, true);
+    xmlhttp2.send();
+}
+
+function addCar(form) {
+
     const loggedUserJSON = window.localStorage.getItem('loggedUser')
     var body = { }
-    body.driver = form.driver.value
+    body.driver = driverId(form.driver.value)
     body.class = form.class.value
     body.name = form.name.value
     body.description = form.description.value
@@ -74,4 +118,5 @@ function addCars(form) {
     xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
 
     xmlhttp.send(JSON.stringify(body));
+
 }
