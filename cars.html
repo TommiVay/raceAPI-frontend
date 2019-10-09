@@ -12,7 +12,7 @@
     <script src='js/login.js'></script>
 </head>
 
-<body onload="onLoad(); checkLogin()">
+<body onload="onLoad(); checkLogin(); drivers()">
         <script>
                 function openForm() {
                   document.getElementById("myForm").style.display = "block";
@@ -21,16 +21,6 @@
                 function closeForm() {
                   document.getElementById("myForm").style.display = "none";
                 }
-
-                function openAddForm() {
-                    document.getElementById("myAddForm").style.display = "block";
-                    drivers();
-                }
-
-                function closeAddForm() {
-                    document.getElementById("myAddForm").style.display = "none";
-                }
-
                 </script>
                 <div id ='header'>
                   <img id='titleLogo' src="resources/img/logo.png">
@@ -49,28 +39,6 @@
                         </form>
                       </div>
                     </div>
-                    <div>
-                        <button class="open-button" onclick="openAddForm()"><b>ADD CAR</b></button>
-                        <div class="form-popup" id="myAddForm">
-                            <form action="/api/login" class="form-container">
-
-                                <label for="driver"><b>Driver</b></label>
-                                <select id="selectDriver" name="driver" required>
-                                </select>
-
-                                <label for="class"><b>Class</b></label>
-                                <input type="text" placeholder="Class" name="class">
-
-                                <label for="name"><b>Vehicle name</b></label>
-                                <input type="text" placeholder="Vehicle name" name="name" required>
-
-                                <label for="description"><b>Description</b></label>
-                                <input type="text" placeholder="Description" name="description">
-
-                                <button type="button" class="btn" onclick="driverId(this.form);closeAddForm()">Add</button>
-                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
-                            </form>
-                        </div>
                     </div>
                   </div>
     <div id="main">
@@ -85,7 +53,25 @@
         </div>
         <h1>RaceAPI</h1>
         <h2>Register a car</h2>
-        <div id='carsFormDiv'></div>
+        <div id='vehiclesFormDiv'>
+          <form class="form-input">
+
+            <label for="driver"><b>Driver</b></label>
+            <select id="selectDriver" name="driver" required>
+            </select><br><br>
+
+            <label for="class"><b>Class</b></label>
+            <input type="text" placeholder="Class" name="class"><br><br>
+
+            <label for="name"><b>Vehicle name</b></label>
+            <input type="text" placeholder="Vehicle name" name="name" required><br><br>
+
+            <label for="description"><b>Description</b></label>
+            <input type="text" placeholder="Description" name="description"><br><br>
+
+            <button type="button" class="form-submit" onclick="addCar(this.form)">Add</button>
+        </form>
+        </div>
         <h2>List of registered cars</h2>
         <div id='vehiclesDiv'></div>
           </div>
