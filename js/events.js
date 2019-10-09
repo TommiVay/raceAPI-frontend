@@ -40,3 +40,69 @@ function parseSession(session) {
     outputHTMLStructure += '</div>' + '</div>'
     return outputHTMLStructure
 }
+
+function vehicles() {
+    document.getElementById("myAddForm").style.display = "block"
+    var xmlhttp = new XMLHttpRequest();
+    var url = 'http://localhost:3003/api/vehicles'
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var vehicles = JSON.parse(xmlhttp.responseText);
+            var out = "";
+            var i;
+            for (i = 0; i < vehicles.length; i++) {
+                out += "<option value=" + vehicles[i].name +">"+ vehicles[i].name + "</option>"
+            }
+            document.getElementById('selectVehicle').innerHTML += out;
+        }
+    }
+
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+function drivers() {
+    document.getElementById("myAddForm").style.display = "block"
+    var xmlhttp = new XMLHttpRequest();
+
+    url = 'http://localhost:3003/api/drivers'
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var drivers = JSON.parse(xmlhttp.responseText);
+            var out = "";
+            var i;
+            for (i = 0; i < drivers.length; i++) {
+
+                out += "<option value=" + drivers[i].name +">"+ drivers[i].name + "</option>"
+            }
+            console.log('autot')
+            document.getElementById('selectDriver').innerHTML += out;
+        }
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
+
+function openAddForm() {
+
+    document.getElementById("myAddForm").style.display = "block"
+    var xmlhttp = new XMLHttpRequest();
+    drivers();
+    vehicles();
+
+
+    url = 'http://localhost:3003/api/tracks'
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var tracks = JSON.parse(xmlhttp.responseText);
+            var out = "";
+            var i;
+            for (i = 0; i < tracks.length; i++) {
+                out += "<option value=" + tracks[i].name +">"+ tracks[i].name + "</option>"
+            }
+            document.getElementById('selectTrack').innerHTML += out;
+        }
+    }
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+}
