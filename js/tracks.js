@@ -17,14 +17,15 @@ function onLoad() {
 }
 
 function parseTrack(track) {
+    const url = "http://localhost:3003/api"
     let outputHTMLStructure = ''
-    outputHTMLStructure = '</div>' + '<div class="dropdown">' + '<a href=/api/tracks/' + track.name + ' class=dropbtn>' +
+    outputHTMLStructure = '</div>' + '<div class="dropdown">' + `<a href=${url}/tracks?name=${track.name}` + ' class=dropbtn>' +
         track.name + '</a>' + '<div class="dropdown-content">' + '<h3>Address: </h3><p>' + track.address +'</p>'
 
     if (track.sessions.length !==0 ){
         outputHTMLStructure += '<br><h3>Events:</h3>'
         track.sessions.forEach(s => {
-            outputHTMLStructure += '<a href=/api/sessions/' + s.name + '>' + s.name + '</a><br>'
+            outputHTMLStructure += `<a href=${url}/sessions?name=${s.name}>` + s.name + '</a><br>'
         })
     }
 
