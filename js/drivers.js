@@ -42,34 +42,25 @@ function parseDriver(driver) {
 
 function addDriver() {
     console.log('addDriver')
-    driverName = document.getElementById('usernameIP').value
-    driverUsername = document.getElementById('realnameIP').value
-    driverNationality = document.getElementById('nationalityIP').value
-    driverOrganization = document.getElementById('organizationIP').value
-    driverPassWord = document.getElementById('passwordIP').value
 
-
-
+    var body = {}
+    body.username = document.getElementById('usernameIP').value
+    body.name = document.getElementById('realnameIP').value
+    body.nationality = document.getElementById('nationalityIP').value
+    body.organization = document.getElementById('organizationIP').value
+    body.password = document.getElementById('passwordIP').value
+    console.log(JSON.stringify(body))
 
     var xmlhttp = new XMLHttpRequest();
     var url = 'http://localhost:3003/api/drivers'
     xmlhttp.onreadystatechange = function () {
-if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-    console.log(xmlhttp.responseText)  
-
-    } else {
-        console.log(xmlhttp.responseText)
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            console.log(xmlhttp.responseText)
+        } else {
+            console.log(xmlhttp.responseText)
+        }
     }
-    let body = {
-        "username": driverUsername,
-        "name": driverName,
-        "nationality": driverNationality,
-        "organization": driverOrganization,
-        "password": driverPassWord
-    }
-
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8')
     xmlhttp.send(JSON.stringify(body));
-}
 }

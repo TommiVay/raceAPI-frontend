@@ -2,93 +2,93 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="/resources/icons/favicon.ico" type="image/ico">
-    <meta charset="utf-8" />
-    <title>RaceApi - Tracks</title>
-    <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
-    <script src='/js/tracks.js'></script>
-
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="/resources/icons/favicon.ico" type="image/ico">
+  <meta charset="utf-8" />
+  <title>RaceApi - Tracks</title>
+  <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
+  <script src='/js/tracks.js'></script>
+  <script src='/js/login.js'></script>
 
 </head>
 
-<body onload="onLoad()">
-        <script>
-                function openForm() {
-                  document.getElementById("myForm").style.display = "block";
-                }
-                
-                function closeForm() {
-                  document.getElementById("myForm").style.display = "none";
-                }
+<body onload="onLoad(); checkLogin()">
+  <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
 
-                function openAddForm() {
-                    document.getElementById("myAddForm").style.display = "block";
-                }
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
 
-                function closeAddForm() {
-                    document.getElementById("myAddForm").style.display = "none";
-                }
+    function openAddForm() {
+      document.getElementById("myAddForm").style.display = "block";
+    }
 
-                </script>
-                <div id ='header'>
-                  <img id='titleLogo' src="/resources/img/logo.png">
-                <div>
-                <button class="open-button" onclick="openForm()"><b>LOGIN</b></button>
-                <div class="form-popup" id="myForm">
-                        <form action="/api/login" class="form-container">
-                      
-                          <label for="username"><b>Username</b></label>
-                          <input type="text" placeholder="Username" name="username" required>
-                      
-                          <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Password" name="password" required>
-                      
-                          <button type="submit" class="btn">Login</button>
-                          <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
-                        </form>
-                      </div>
-                    </div>
-                    <div>
-                        <button class="open-button" onclick="openAddForm()"><b>ADD TRACK</b></button>
-                        <div class="form-popup" id="myAddForm">
-                            <form action="/api/login" class="form-container">
+    function closeAddForm() {
+      document.getElementById("myAddForm").style.display = "none";
+    }
 
-                                <label for="name"><b>Track name</b></label>
-                                <input type="text" placeholder="Track name" name="name" required>
+  </script>
+  <div id='header'>
+    <img id='titleLogo' src="/resources/img/logo.png">
+    <div>
+      <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
+      <div class="form-popup" id="myForm">
+        <form onsubmit="handleLogin();return false" class="form-container">
+          <label for="username"><b>Username</b></label>
+          <input id="usernameField" type="text" placeholder="Username" required>
 
-                                <label for="map"><b>Map</b></label>
-                                <input type="text" placeholder="Map" name="map">
+          <label for="password"><b>Password</b></label>
+          <input id="passwordField" type="password" placeholder="Password" required>
 
-                                <label for="address"><b>Address</b></label>
-                                <input type="text" placeholder="Address" name="address" required>
+          <button type="submit" class="btn">Login</button>
+          <button class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
 
-                                <label for="session"><b>Events</b></label>
-                                <input type="text" placeholder="Events" name="sessions">
+      <div>
+        <button class="open-button" onclick="openAddForm()"><b>ADD TRACK</b></button>
+        <div class="form-popup" id="myAddForm">
+          <form action="/api/login" class="form-container">
 
-                                <button type="submit" class="btn">Add</button>
-                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
-                            </form>
-                        </div>
-                    </div>
-                  </div>
-    <div id="main">
-        <div id='navBar'>
-            <ul>
-                <li><a href="/index.html"><i class="fa fa-home"></i>  Home</a></li>
-                <li><a href="/events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
-                <li><a class='activeTab' href="/tracks.html"><i class='fas fa-route'></i>Tracks</a></li>
-                <li><a href="/drivers.html"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
-                <li><a href="/cars.html"><i class='fas fa-car'></i>Cars</a></li>
-            </ul>
+            <label for="name"><b>Track name</b></label>
+            <input type="text" placeholder="Track name" name="name" required>
+
+            <label for="map"><b>Map</b></label>
+            <input type="text" placeholder="Map" name="map">
+
+            <label for="address"><b>Address</b></label>
+            <input type="text" placeholder="Address" name="address" required>
+
+            <label for="session"><b>Events</b></label>
+            <input type="text" placeholder="Events" name="sessions">
+
+            <button type="submit" class="btn">Add</button>
+            <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
+          </form>
         </div>
-        <h1>Tracks</h1>
-        <h2>Add a new track</h2>
-        <div id='trackFormDiv'></div>
-        <h2>List of registered tracks</h2>
+      </div>
+    </div>
+  </div>
+    <div id="main">
+      <div id='navBar'>
+        <ul>
+          <li><a href="/index.html"><i class="fa fa-home"></i> Home</a></li>
+          <li><a href="/events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
+          <li><a class='activeTab' href="/tracks.html"><i class='fas fa-route'></i>Tracks</a></li>
+          <li><a href="/drivers.html"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
+          <li><a href="/cars.html"><i class='fas fa-car'></i>Cars</a></li>
+        </ul>
+      </div>
+      <h1>Tracks</h1>
+      <h2>Add a new track</h2>
+      <div id='trackFormDiv'></div>
+      <h2>List of registered tracks</h2>
 
-        <div id ='tracksDiv'></div>
+      <div id='tracksDiv'></div>
     </div>
     <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>
