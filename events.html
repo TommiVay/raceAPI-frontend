@@ -23,18 +23,78 @@
         }
 
         function post(form) {
-            var http = new XMLHttpRequest();
-            var url = 'localhost:3003/events';
-            http.open('POST', url, true);
-            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            var xmlhttp2 = new XMLHttpRequest();
+            var url = 'http://localhost:3003/api/drivers'
+            xmlhttp2.onreadystatechange = function () {
+                if (xmlhttp2.readyState === 4 && xmlhttp2.status === 200) {
+                    var drivers = JSON.parse(xmlhttp2.responseText);
+                    var driverId = ""
+                    console.log(drivers[0].name + form.driver.value)
+                    drivers.forEach(d => {if(form.driver.value == d.name){
+                        console.log(d.id)
+                        driverId = d.id;
+                    }});
+                    var xmlhttp3 = new XMLHttpRequest();
+                    var url = 'http://localhost:3003/api/vehicles'
+                    xmlhttp3.onreadystatechange = function () {
+                        if (xmlhttp3.readyState === 4 &&  xmlhttp3.status === 200){
+                            var vehicles = JSON.parse(xmlhttp3.responseText);
+                            var vehicleId = ""
+                            console.log(vehicles[0].name + form.vehicle.value)
+                            vehicles.forEach(v => {if(form.vehicle.value == v.name){
+                                console.log(v.id)
+                                vehicleId = v.id;
+                            }});
+                            var xmlhttp4 = new XMLHttpRequest();
+                            var url = 'http://localhost:3003/api/tracks'
+                            xmlhttp4.onreadystatechange = function () {
+                                if (xmlhttp4.readyState === 4 &&  xmlhttp4.status === 200){
+                                    var tracks = JSON.parse(xmlhttp4.responseText);
+                                    var trackId = ""
+                                    console.log(tracks[0].name + form.track.value)
+                                    tracks.forEach(t => {if(form.track.value === t.name){
+                                        console.log(t.id)
+                                        trackId = t.id;
+                                    }});
+                                    const loggedUserJSON = window.localStorage.getItem('loggedUser')
+                                    var body = { }
+                                    body.driver = driverId
+                                    body.vehicle = vehicleId
+                                    body.name = form.name.value
+                                    body.track = trackId
+                                    body.startDate = form.startDate.value
+                                    body.endDate = form.endDate.value
+                                    const token = JSON.parse(loggedUserJSON).token
+                                    var xmlhttp = new XMLHttpRequest();
+                                    console.log(JSON.stringify(body))
+                                    var url = 'http://localhost:3003/api/sessions'
+                                    xmlhttp.onreadystatechange = function () {
+                                        if (xmlhttp.readyState === 4 && xmlhttp.status === 201) {
 
-            http.onreadystatechange = function () {
-                if (http.readyState == 4 && http.status == 200) {
-                    alert(http.responseText);
+                                            console.log(xmlhttp.responseText)
+                                        }else {
+                                            console.log(xmlhttp.responseText)
+                                        }
+                                    }
+                                    xmlhttp.open("POST", url, true);
+                                    xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+                                    xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
+
+                                    xmlhttp.send(JSON.stringify(body));
+                                }
+                        }
+                        xmlhttp4.open("GET", url, true);
+                        xmlhttp4.send();
+                    }
                 }
+                xmlhttp3.open("GET", url, true);
+                xmlhttp3.send();
             }
-            http.send(form);
+
         }
+        xmlhttp2.open("GET", url, true);
+        xmlhttp2.send();
+    }
 
     </script>
     <div id='header'>
@@ -69,24 +129,21 @@
         <h1>Events</h1>
         <h2>Create new event</h2>
         <div id='SessionFormDiv'>
-            <form action="/api/login" class="form-input">
+            <form class="form-input">
 
                 <label for="name"><b>Session name</b></label>
                 <input type="text" placeholder="Session name" name="name" required><br><br>
 
                 <label for="vehicle"><b>Vehicle</b></label>
-                <select id="selectVehicle" name="vehicle">
-                    <option value="null"></option>
+                <select id="selectVehicle" name="vehicle" required>
                 </select><br><br>
 
                 <label for="driver"><b>Driver</b></label>
-                <select id="selectDriver" name="driver">
-                    <option value="null"></option>
+                <select id="selectDriver" name="driver" required>
                 </select><br><br>
 
                 <label for="track"><b>Track</b></label>
-                <select id="selectTrack" name="track">
-                    <option value="null"></option>
+                <select id="selectTrack" name="track" required>
                 </select><br><br>
 
                 <label for="startDate"><b>Start Date</b></label>
@@ -96,7 +153,7 @@
                 <input type="datetime-local" name="endDate"><br><br>
 
 
-                <button type="submit" class="form-submit" onclick="post(this)">Add</button>
+                <button type="button" class="form-submit" onclick="post(this.form)">Add</button>
             </form>
         </div>
         <h2>History of track sessions</h2>

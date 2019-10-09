@@ -20,22 +20,23 @@ function onLoad() {
 }
 
 function parseSession(session) {
+    const url = "http://localhost:3003/api"
     let outputHTMLStructure = ''
     track = session.track
-    outputHTMLStructure = '</div>' + '<div class="dropdown">' + '<a href=/api/sessions/' + session.name + ' class=dropbtn>' +
-        session.name + '</a>' + '<div class="dropdown-content">' + '<h3>' + 'Track:' + '</h3>' + '<a href=/api/tracks/' + track.name + '>' + track.name + '</a>' + '</p>'
+    outputHTMLStructure = '</div>' + '<div class="dropdown">' + `<a href=${url}/sessions?name=${session.name} class=dropbtn>` +
+        session.name + '</a>' + '<div class="dropdown-content">' + '<h3>' + 'Track:' + '</h3>' + `<a href=${url}/tracks?id=${track.id}>` + track.name + '</a>' + '</p>'
 
     if (session.drivers.length !== 0) {
         outputHTMLStructure += '<h3>' + 'Drivers:' + '</h3>'
         session.drivers.forEach(d => {
-            outputHTMLStructure += ' <a href=/api/drivers/' + d.name + '>' + d.name + '</a><br>'
+            outputHTMLStructure += ` <a href=${url}/drivers?username=${d.username}>` + d.name + '</a><br>'
         })
     }
 
     if (session.vehicles.length !== 0) {
         outputHTMLStructure += '<h3>Cars: </h3>'
         session.vehicles.forEach(c => {
-            outputHTMLStructure += '<a href=/api/cars/' + c.name + '>' + c.name + '</a><br>'
+            outputHTMLStructure += `<a href=${url}/vehicles?id=${c.id}>` + c.name + '</a><br>'
         })
     }
 
@@ -100,8 +101,4 @@ function getTracks() {
     }
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
-}
-
-function addEvent() {
-
 }
