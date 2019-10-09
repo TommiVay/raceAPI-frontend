@@ -33,11 +33,11 @@ function parseTrack(track) {
 }
 
 function addTrack(form) {
-    
+    const loggedUserJSON = window.localStorage.getItem('loggedUser')
     var body = { }
     body.name = form.name.value
-    body.map = form.map.value
     body.address = form.address.value
+    const token = JSON.parse(loggedUserJSON).token
     var xmlhttp = new XMLHttpRequest();
     console.log(JSON.stringify(body))
     var url = 'http://localhost:3003/api/tracks'
@@ -51,6 +51,8 @@ function addTrack(form) {
     }
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/json; charset=utf-8");
+    xmlhttp.setRequestHeader('Authorization', 'bearer ' + token);
+
     xmlhttp.send(JSON.stringify(body));
 
 }
