@@ -30,10 +30,9 @@ function parseVehicle(vehicle) {
 }
 
 function drivers() {
-    document.getElementById("myAddForm").style.display = "block"
     var xmlhttp = new XMLHttpRequest();
 
-    url = 'http://localhost:3003/api/drivers'
+    var url = 'http://localhost:3003/api/drivers'
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var drivers = JSON.parse(xmlhttp.responseText);
