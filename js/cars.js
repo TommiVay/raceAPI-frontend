@@ -19,7 +19,7 @@ function onLoad() {
 function parseVehicle(vehicle) {
     let outputHTMLStructure = ''
     outputHTMLStructure = '</div><div class="dropdown"> <a href=/api/cars/' + vehicle.name + ' class=dropbtn>' +
-    vehicle.name + '</a><div class="dropdown-content"><h3>Class: </h3><p>' + vehicle.class + '</p><br><h3>Driver: </h3><a href=/api/drivers/' + vehicle.driver.name + '>' + vehicle.driver.name + '</a><br>'
+    vehicle.name + '</a><div class="dropdown-content"><h3>Class: </h3><p>' + vehicle.class + '</p><br><h3>Driver: </h3><a href=/api/drivers/' + vehicle.driver.name + '>' + vehicle.driver.name + '</a>'
     
     if (vehicle.description !== '') {
         outputHTMLStructure += '<h3>Description: </h3><p>' + vehicle.description + '</p>'

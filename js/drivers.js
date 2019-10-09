@@ -19,10 +19,10 @@ function onLoad() {
 function parseDriver(driver) {
     let outputHTMLStructure = ''
     outputHTMLStructure = '</div>' + '<div class="dropdown"> <a href=/api/drivers/' + driver.name + ' class=dropbtn>' +
-    driver.name + '</a>' + '<div class="dropdown-content">' + '<h3>' + 'Username:' + '</h3>' + '<p>' + driver.username + '</p><br><h3>Nationality: </h3><p>' + driver.nationality + '</p><br><h3>Organization: </h3><p>' + driver.organization + '</p>'
-    
+        driver.name + '</a>' + '<div class="dropdown-content">' + '<h3>' + 'Username:' + '</h3>' + '<p>' + driver.username + '</p><br><h3>Nationality: </h3><p>' + driver.nationality + '</p><br><h3>Organization: </h3><p>' + driver.organization + '</p>'
+
     if (driver.vehicles.length !== 0) {
-        outputHTMLStructure += '<br><h3>Vehicles: </h3>' 
+        outputHTMLStructure += '<br><h3>Vehicles: </h3>'
         driver.vehicles.forEach(v => {
             outputHTMLStructure += '<a href=/api/vehicles/' + v.name + '>' + v.name + '</a><br>'
         })
@@ -38,4 +38,38 @@ function parseDriver(driver) {
 
     outputHTMLStructure += '</div>' + '</div>'
     return outputHTMLStructure
+}
+
+function addDriver() {
+    console.log('addDriver')
+    driverName = document.getElementById('usernameIP').value
+    driverUsername = document.getElementById('realnameIP').value
+    driverNationality = document.getElementById('nationalityIP').value
+    driverOrganization = document.getElementById('organizationIP').value
+    driverPassWord = document.getElementById('passwordIP').value
+
+
+
+
+    var xmlhttp = new XMLHttpRequest();
+    var url = 'http://localhost:3003/api/drivers'
+    xmlhttp.onreadystatechange = function () {
+if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    console.log(xmlhttp.responseText)  
+
+    } else {
+        console.log(xmlhttp.responseText)
+    }
+    let body = {
+        "username": driverUsername,
+        "name": driverName,
+        "nationality": driverNationality,
+        "organization": driverOrganization,
+        "password": driverPassWord
+    }
+
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader('Content-type', 'application/json; charset=utf-8')
+    xmlhttp.send(JSON.stringify(body));
+}
 }
