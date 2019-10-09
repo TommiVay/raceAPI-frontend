@@ -63,16 +63,12 @@
             <label for="address"><b>Address</b></label>
             <input type="text" placeholder="Address" name="address" required>
 
-            <label for="session"><b>Events</b></label>
-            <input type="text" placeholder="Events" name="sessions">
-
-            <button type="submit" class="btn">Add</button>
-            <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+                                <button type="button" class="btn" onclick="closeAddForm();addTrack(this.form)">Add</button>
+                                <button type="submit" class="btn cancel" onclick="closeAddForm()">Close</button>
+                            </form>
+                        </div>
+                    </div>
+                  </div>
     <div id="main">
       <div id='navBar'>
         <ul>
