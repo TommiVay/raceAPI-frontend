@@ -2,81 +2,57 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="/resources/icons/favicon.ico" type="image/ico">
-    <meta charset="utf-8" />
-    <title>RaceApi - Home</title>
-    <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
-
-
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" href="/resources/icons/favicon.ico" type="image/ico">
+  <meta charset="utf-8" />
+  <title>RaceApi - Home</title>
+  <script src="https://kit.fontawesome.com/e1a1a5bd43.js" crossorigin="anonymous"></script>
+  <script src='/js/login.js'></script>
 </head>
 
 <body onload="checkLogin()">
-        <script>
-                function openForm() {
-                  document.getElementById("myForm").style.display = "block";
-                }
-                
-                function closeForm() {
-                  document.getElementById("myForm").style.display = "none";
-                }
+  <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
 
-                function checkLogin() {
-                    if(window.location.href.indexOf("username") > -1){
-                        const joku = window.location.href.split("&");
-                        console.log(joku)
-                        nimi = joku[0].split('=')
-                        const url = nimi[0].split('?')
-                        window.history.replaceState({}, "RaceApi", url[0])
-                        document.getElementById("header").innerHTML = document.getElementById("header").innerHTML+"<p>" + nimi[1] + "</p>";
-                        document.getElementById('loginButton').onclick = function () {location.reload()}
-                        document.getElementById('loginButton').innerText = "LOGOUT"
-                    }
-                }
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
 
-                function login(form){
-                    if(form.username.value === "asd" && form.password.value === "asd"){
-                        document.getElementById('LoginButton').innerText = "asd";
-                        return true;
-                    }else{
-                        alert("Error password or username")
-                        return false;
-                    }
-                }
-                </script>
-                <div id ='header'>
-                  <img id='titleLogo' src="resources/img/logo.png">
-                <div>
-                <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
-                    <div class="form-popup" id="myForm">
-                        <form class="form-container">
-                      
-                          <label for="username"><b>Username</b></label>
-                          <input type="text" placeholder="Username" name="username" required>
-                      
-                          <label for="password"><b>Password</b></label>
-                          <input type="password" placeholder="Password" name="password" required>
-                      
-                          <button type="submit" class="btn" onclick="return login(this.form)">Login</button>
-                          <button type="submit" class="btn cancel" onclick="closeForm()">Close</button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-    <div id="main">
-        <div id='navBar'>
-            <ul>
-                <li><a class='activeTab' href="index.html"><i class="fa fa-home"></i>  Home</a></li>
-                <li><a href="events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
-                <li><a href="api/tracks"><i class='fas fa-route'></i>Tracks</a></li>
-                <li><a href="api/drivers"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
-                <li><a href="api/cars"><i class='fas fa-car'></i>Cars</a></li>
-            </ul>
-        </div>
-        <h1>RaceAPI</h1>
-        <h2><u>The ultimate trackday statistics platform!</u></h2>
-        <h3>Content and features coming soon!</h3>
+  </script>
+  <div id='header'>
+    <img id='titleLogo' src="resources/img/logo.png">
+    <div>
+      <button id='loginButton' class="open-button" onclick="openForm()"><b>LOGIN</b></button>
+      <div class="form-popup" id="myForm">
+        <form onsubmit="handleLogin();return false" class="form-container">
+          <label for="username"><b>Username</b></label>
+          <input id="usernameField" type="text" placeholder="Username" required>
+
+          <label for="password"><b>Password</b></label>
+          <input id="passwordField" type="password" placeholder="Password" required>
+
+          <button type="submit" class="btn">Login</button>
+          <button class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+      </div>
     </div>
-    <div id="footer">RaceAPI &copy; team 7, 2019</div>
+  </div>
+  <div id="main">
+    <div id='navBar'>
+      <ul>
+        <li><a class='activeTab' href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="events.html"><i class='fa fa-flag-checkered'></i>Events</a></li>
+        <li><a href="api/tracks"><i class='fas fa-route'></i>Tracks</a></li>
+        <li><a href="api/drivers"><i class='fas fa-user-astronaut'></i>Drivers</a></li>
+        <li><a href="api/cars"><i class='fas fa-car'></i>Cars</a></li>
+      </ul>
+    </div>
+    <h1>RaceAPI</h1>
+    <h2><u>The ultimate trackday statistics platform!</u></h2>
+    <h3>Content and features coming soon!</h3>
+  </div>
+  <div id="footer">RaceAPI &copy; team 7, 2019</div>
 </body>
