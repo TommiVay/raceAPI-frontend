@@ -1,19 +1,22 @@
 function onLoad() {
-    var xmlhttp = new XMLHttpRequest();
-    var url = 'http://localhost:3003/api/sessions'
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-            var sessions = JSON.parse(xmlhttp.responseText);
+
+    var xmlhttp1 = new XMLHttpRequest();
+    let url = 'http://localhost:3003/api/sessions'
+    xmlhttp1.onreadystatechange = function () {
+        if (xmlhttp1.readyState == 4 && xmlhttp1.status == 200) {
+            var sessions = JSON.parse(xmlhttp1.responseText);
             var out = "";
             var i;
+            console.log(sessions)
             for (i = 0; i < sessions.length; i++) {
                 out += parseSession(sessions[i])
             }
             document.getElementById("sessionDiv").innerHTML = out;
         }
     }
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+
+    xmlhttp1.open("GET", url, true);
+    xmlhttp1.send();
 }
 
 function parseSession(session) {
@@ -29,7 +32,6 @@ function parseSession(session) {
         })
     }
 
-
     if (session.vehicles.length !== 0) {
         outputHTMLStructure += '<h3>Cars: </h3>'
         session.vehicles.forEach(c => {
@@ -41,17 +43,16 @@ function parseSession(session) {
     return outputHTMLStructure
 }
 
-function vehicles() {
-    document.getElementById("myAddForm").style.display = "block"
+function getVehicles() {
     var xmlhttp = new XMLHttpRequest();
-    var url = 'http://localhost:3003/api/vehicles'
+    let url = 'http://localhost:3003/api/vehicles'
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var vehicles = JSON.parse(xmlhttp.responseText);
             var out = "";
             var i;
             for (i = 0; i < vehicles.length; i++) {
-                out += "<option value=" + vehicles[i].name +">"+ vehicles[i].name + "</option>"
+                out += "<option value=" + vehicles[i].name + ">" + vehicles[i].name + "</option>"
             }
             document.getElementById('selectVehicle').innerHTML += out;
         }
@@ -61,11 +62,10 @@ function vehicles() {
     xmlhttp.send();
 }
 
-function drivers() {
-    document.getElementById("myAddForm").style.display = "block"
+function getDrivers() {
     var xmlhttp = new XMLHttpRequest();
 
-    url = 'http://localhost:3003/api/drivers'
+    let url = 'http://localhost:3003/api/drivers'
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var drivers = JSON.parse(xmlhttp.responseText);
@@ -73,7 +73,7 @@ function drivers() {
             var i;
             for (i = 0; i < drivers.length; i++) {
 
-                out += "<option value=" + drivers[i].name +">"+ drivers[i].name + "</option>"
+                out += "<option value=" + drivers[i].name + ">" + drivers[i].name + "</option>"
             }
             console.log('autot')
             document.getElementById('selectDriver').innerHTML += out;
@@ -83,22 +83,17 @@ function drivers() {
     xmlhttp.send();
 }
 
-function openAddForm() {
+function getTracks() {
 
-    document.getElementById("myAddForm").style.display = "block"
     var xmlhttp = new XMLHttpRequest();
-    drivers();
-    vehicles();
-
-
-    url = 'http://localhost:3003/api/tracks'
+    let url = 'http://localhost:3003/api/tracks'
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var tracks = JSON.parse(xmlhttp.responseText);
             var out = "";
             var i;
             for (i = 0; i < tracks.length; i++) {
-                out += "<option value=" + tracks[i].name +">"+ tracks[i].name + "</option>"
+                out += "<option value=" + tracks[i].name + ">" + tracks[i].name + "</option>"
             }
             document.getElementById('selectTrack').innerHTML += out;
         }

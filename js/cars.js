@@ -49,3 +49,7 @@ function drivers() {
     xmlhttp.open("GET", url, true);
     xmlhttp.send();
 }
+
+function addCars(form) {
+
+}
